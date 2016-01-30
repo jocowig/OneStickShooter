@@ -327,6 +327,3 @@ _Pvt_Extensions
 *.pidb
 *.resources
 test-results/
-
-Assets/Materials/spacetexture.jpg
-Assets/Textures/spacetexture.jpg
