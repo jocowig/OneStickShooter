@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Room {
+public class Room : MonoBehaviour {
 	
 	public Dictionary<string, Room> exits;
 	

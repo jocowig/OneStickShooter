@@ -1,42 +1,48 @@
 ﻿using UnityEngine;
 using System.Collections;
-using SimpleJson; // http://wiki.unity3d.com/index.php/SimpleJSON
+using SimpleJSON; // http://wiki.unity3d.com/index.php/SimpleJSON
+using System;
+using System.Collections.Generic;
 
 public class LevelGenerator : MonoBehaviour
 {
 
+    public TextAsset jsonText;
+
     Sprite[] tiles; // add the sprites from the sheet in the unity editor
 
-    GameObject[] rooms; // Holds all the rooms
+    List<GameObject> rooms = new List<GameObject>(); // Holds all the rooms
 
     void Start()
     {
+        jsonText = (TextAsset)Resources.Load("testLevel.json");
         // TODO: add sprite sheet
-        tiles = Resources.LoadAll<Sprite>("spritesheet");
+        tiles = Resources.LoadAll<Sprite>("rougelikeDungeon_transparent");
     }
-    /*
+    
     GameObject parseRoomJson(string roomFile)
     {
         JSONNode roomData = JSON.Parse(roomFile);
-
+        
         GameObject room = new GameObject();
         room.AddComponent<Room>();
         room.transform.SetParent(this.transform);
         room.name = "Room";
 
-        foreach (JSONNode tile in roomData["layers"]["tiles"])
+        foreach (JSONNode tile in roomData["layers"]["tiles"].AsArray)
         {
-            GameObject tile = new GameObject();
-            tile.transform.SetParent(room.transform);
-            SpriteRenderer renderer = tile.AddComponent<SpriteRenderer>();
+            GameObject newTile = new GameObject();
+            newTile.transform.SetParent(room.transform);
+            SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer>();
             renderer.sprite = tiles[Int32.Parse(tile["tile"])];
-            tile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
-            tile.name = "tile_" + tile.transform.position.x + "_" + tile.transform.position.y;
+            newTile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
+            newTile.name = "tile_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
         }
 
         // Add Collision prefab to room
 
         // Add Trigger prefab to detect room entry
+        return room;
     }
 
     void GenerateLevel(int numberOfRooms)
@@ -47,39 +53,39 @@ public class LevelGenerator : MonoBehaviour
             if (roomsLeft == numberOfRooms)
             {
                 // first room;
-                rooms.Push(parseRoom(GetRandomRoom()));
+                rooms.Add(parseRoomJson(GetRandomRoom()));
                 roomsLeft--;
             }
             else {
                 rooms.Shuffle();
                 string randExit = GetRandomExit();
-                if (!rooms[0].GetComponent<Room>().HasExit(GetRandomExit()))) {
-                    GameObject newRoom = parseRoom(GetRandomRoom());
+                if (!rooms[0].GetComponent<Room>().HasExit(GetRandomExit())) {
+                    GameObject newRoom = parseRoomJson(GetRandomRoom());
                     // Set position based on exit
                     // TODO: Destory Doors
                     if (randExit == "e")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x + 25, rooms[0].transform.position.y);
-                        newRoom.GetComponent<Room>().exits.Add("w", rooms[0]);
+                        newRoom.GetComponent<Room>().exits.Add("w", rooms[0].GetComponent<Room>());
                     }
                     else if (randExit == "w")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x - 25, rooms[0].transform.position.y);
-                        newRoom.GetComponent<Room>().exits.Add("e", rooms[0]);
+                        newRoom.GetComponent<Room>().exits.Add("e", rooms[0].GetComponent<Room>());
                     }
                     else if (randExit == "n")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x, rooms[0].transform.position.y - 25);
-                        newRoom.GetComponent<Room>().exits.Add("s", rooms[0]);
+                        newRoom.GetComponent<Room>().exits.Add("s", rooms[0].GetComponent<Room>());
                     }
                     else {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x, rooms[0].transform.position.y + 25);
-                        newRoom.GetComponent<Room>().exits.Add("n", rooms[0]);
+                        newRoom.GetComponent<Room>().exits.Add("n", rooms[0].GetComponent<Room>());
                     }
 
-                    rooms[0].GetComponent<Room>().exits.Add(randExit, newRoom);
+                    rooms[0].GetComponent<Room>().exits.Add(randExit, newRoom.GetComponent<Room>());
 
-                    rooms.Push(newRoom);
+                    rooms.Add(newRoom);
                     roomsLeft--;
                 }
             }
@@ -88,14 +94,16 @@ public class LevelGenerator : MonoBehaviour
 
     string GetRandomRoom()
     {
-        //TODO: set json file
+        JSONNode levelData = JSON.Parse(jsonText.text);
+        JSONNode randomRoom = levelData.AsArray[UnityEngine.Random.Range(0, levelData.AsArray.Count)];
+        string roomJson = randomRoom.ToString();
         return roomJson;
     }
-    */
+    
     string GetRandomExit()
     {
         // 2/3 chance to go horizontal
-        float rand = Random.value;
+        float rand = UnityEngine.Random.value;
         if (rand > .66)
         {
             return "e";
