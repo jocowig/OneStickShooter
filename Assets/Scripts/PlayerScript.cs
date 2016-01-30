@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour {
         {
             mouseDown = false;
         }
+        /*
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -41,6 +42,11 @@ public class PlayerScript : MonoBehaviour {
         {
             lookPos = hit.point;
         }
+        */
+
+        lookPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log("Mouse position " + Input.mousePosition + " lookpos " + lookPos);
+        lookPos.z = 0;
         lookDir = lookPos - transform.position;
         lookDir.z = 0;
         transform.LookAt(transform.position + lookDir, Vector3.forward);
