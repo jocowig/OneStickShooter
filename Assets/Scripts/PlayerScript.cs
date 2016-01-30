@@ -10,6 +10,10 @@ public class PlayerScript : MonoBehaviour {
 
     Vector3 lookPos;
     Vector3 lookDir;
+
+    private float elapsedTime = 0f;
+    public float fireRate = .25f;
+   
 	// Use this for initialization
 	    void Start ()
     {
@@ -19,9 +23,14 @@ public class PlayerScript : MonoBehaviour {
 
     void Update()
     {
+        elapsedTime += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            mouseDown = true;
+            if (elapsedTime > fireRate)
+            {
+                mouseDown = true;
+                elapsedTime = 0;
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
