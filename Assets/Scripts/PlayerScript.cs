@@ -35,18 +35,9 @@ public class PlayerScript : MonoBehaviour {
         {
             mouseDown = false;
         }
-        /*
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            lookPos = hit.point;
-        }
-        */
 
         lookPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("Mouse position " + Input.mousePosition + " lookpos " + lookPos);
+        //Debug.Log("Mouse position " + Input.mousePosition + " lookpos " + lookPos);
         lookPos.z = 0;
         lookDir = lookPos - transform.position;
         lookDir.z = 0;

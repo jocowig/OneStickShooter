@@ -24,9 +24,11 @@ public class FollowEnemy : MonoBehaviour {
             {
                 iTween.MoveTo(this.gameObject, player.transform.position, followSpeed);
                 elapsedTime = 0f;
+                Debug.Log("Following");
             }
         }
 	}
+
     void OnCollisionEnter(Collision collisionInfo)
     {
         if (collisionInfo.collider.tag.Equals("Firework"))
