@@ -58,10 +58,9 @@ public class PlayerScript : MonoBehaviour {
         {
             GameObject instProjectile = Instantiate(projectile) as GameObject;
             instProjectile.transform.position = transform.Find("Projectile Shooter").transform.position;
-            Rigidbody projRB = projectile.GetComponent<Rigidbody>();
-            projRB.AddForce(lookDir * speed / Time.deltaTime);
-            Debug.Log("Projectile: " + instProjectile.transform.position);
-            Debug.Log("Player: " +transform.position);
+            instProjectile.transform.GetComponent<FireworkScript>().dir = lookDir.normalized;
+            //Debug.Log("Projectile: " + instProjectile.transform.position);
+            //Debug.Log("Player: " +transform.position);
             Vector3 negativeDir = new Vector3(-lookDir.x, 0, -lookDir.z);
             rb.AddForce(negativeDir * speed / Time.deltaTime);
             elapsedTime = 0;
