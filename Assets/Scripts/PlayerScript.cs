@@ -59,8 +59,8 @@ public class PlayerScript : MonoBehaviour {
             instProjectile.transform.GetComponent<FireworkScript>().dir = lookDir.normalized;
             //Debug.Log("Projectile: " + instProjectile.transform.position);
             //Debug.Log("Player: " +transform.position);
-            Vector3 negativeDir = new Vector3(-lookDir.x, -lookDir.y, 0);
-            rb.AddForce(negativeDir * speed / Time.deltaTime);
+            Vector3 negativeDir = new Vector3(-transform.forward.x, -transform.forward.y, 0);
+            rb.velocity = (negativeDir * speed);
             elapsedTime = 0;
         }
     }
