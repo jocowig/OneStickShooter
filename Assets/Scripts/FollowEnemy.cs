@@ -6,6 +6,7 @@ public class FollowEnemy : MonoBehaviour {
     public GameObject player;
     public float followTime = 1f;
     public float followSpeed = 2f;
+    public int health;
     private float elapsedTime = 0f;
 
 	// Use this for initialization
@@ -26,4 +27,15 @@ public class FollowEnemy : MonoBehaviour {
             }
         }
 	}
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        if (collisionInfo.collider.tag.Equals("Firework"))
+        {
+            health--;
+            if(health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

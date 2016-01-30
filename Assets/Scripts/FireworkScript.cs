@@ -27,4 +27,8 @@ public class FireworkScript : MonoBehaviour {
 
         //Debug.Log("Elapsed " + elapsedTime + " Bullet life " + bulletLife);
     }
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        Destroy(this.gameObject);
+    }
 }
