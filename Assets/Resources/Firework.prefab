@@ -15,7 +15,7 @@ GameObject:
   - 54: {fileID: 5451342}
   m_Layer: 0
   m_Name: Firework
-  m_TagString: Untagged
+  m_TagString: Firework
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,11 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+<<<<<<< HEAD
+      propertyPath: m_TagString
+      value: Firework
+      objectReference: {fileID: 0}
+=======
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 0f7062690be94b64c92be2461e7a0d15,
@@ -132,6 +137,7 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102790}

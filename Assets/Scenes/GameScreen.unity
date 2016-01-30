@@ -503,10 +503,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    - target: {fileID: 11494606, guid: e5cbb778ae81bd346a4239b7a8d65321, type: 2}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+=======
     - target: {fileID: 2386924, guid: 4f25f5e95ad5ad64f91c049329e57cce, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e157414df17cf69419cadcc2a4c7751d, type: 2}
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f25f5e95ad5ad64f91c049329e57cce, type: 2}
   m_IsPrefabParent: 0

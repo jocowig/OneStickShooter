@@ -5,6 +5,7 @@ public class PlayerScript : MonoBehaviour {
 
     GameObject projectile;
     public float speed;
+    public int health;
     Rigidbody rb;
     bool mouseDown;
 
@@ -70,6 +71,17 @@ public class PlayerScript : MonoBehaviour {
             Vector3 negativeDir = new Vector3(-lookDir.x, -lookDir.y, 0);
             rb.AddForce(negativeDir * speed / Time.deltaTime);
             elapsedTime = 0;
+        }
+    }
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        if (collisionInfo.collider.tag.Equals("Enemy"))
+        {
+            health--;
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }
