@@ -59,8 +59,7 @@ public class PlayerScript : MonoBehaviour {
         if(mouseDown)
         {
             GameObject instProjectile = Instantiate(projectile) as GameObject;
-            instProjectile.transform.position = transform.position + new Vector3(transform.position.x, 0, transform.position.z);
-            instProjectile.transform.LookAt(transform.position + lookDir, Vector3.up);
+            instProjectile.transform.position = transform.forward;
             Rigidbody projRB = projectile.GetComponent<Rigidbody>();
             projRB.AddForce(lookDir * speed / Time.deltaTime);
             Vector3 negativeDir = new Vector3(-lookDir.x, 0, -lookDir.z);
