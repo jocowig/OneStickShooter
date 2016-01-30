@@ -43,8 +43,8 @@ public class PlayerScript : MonoBehaviour {
             lookPos = hit.point;
         }
         lookDir = lookPos - transform.position;
-        lookDir.y = 0;
-        transform.LookAt(transform.position + lookDir, Vector3.up);
+        lookDir.z = 0;
+        transform.LookAt(transform.position + lookDir, Vector3.forward);
         
     }
 
@@ -62,7 +62,7 @@ public class PlayerScript : MonoBehaviour {
             instProjectile.transform.GetComponent<FireworkScript>().dir = lookDir.normalized;
             //Debug.Log("Projectile: " + instProjectile.transform.position);
             //Debug.Log("Player: " +transform.position);
-            Vector3 negativeDir = new Vector3(-lookDir.x, 0, -lookDir.z);
+            Vector3 negativeDir = new Vector3(-lookDir.x, -lookDir.y, 0);
             rb.AddForce(negativeDir * speed / Time.deltaTime);
             elapsedTime = 0;
         }
