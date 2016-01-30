@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class FollowEnemy : MonoBehaviour {
 
     public GameObject player;
     public float followTime = 1f;
