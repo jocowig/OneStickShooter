@@ -4,8 +4,10 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 
     GameObject projectile;
+    public GameObject healthBar;
     public float speed;
-    public int health;
+    private float currentHealth;
+    public float maxHealth;
     Rigidbody rb;
     bool mouseDown;
 
@@ -18,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	    void Start ()
     {
+        currentHealth = maxHealth;
         projectile = Resources.Load("Firework") as GameObject;
         rb = GetComponent<Rigidbody>();
     }
@@ -68,11 +71,17 @@ public class PlayerScript : MonoBehaviour {
     {
         if (collisionInfo.collider.tag.Equals("Enemy"))
         {
-            health--;
-            if (health <= 0)
+            currentHealth--;
+            reduceHealthBar(currentHealth/ maxHealth);
+            if (currentHealth <= 0)
             {
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    void reduceHealthBar(float remainingHealth)
+    {
+        healthBar.transform.localScale = new Vector3(remainingHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 }

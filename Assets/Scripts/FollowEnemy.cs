@@ -6,13 +6,15 @@ public class FollowEnemy : MonoBehaviour {
     public GameObject player;
     public float followTime = 1f;
     public float followSpeed = 2f;
-    public int health;
     private float elapsedTime = 0f;
+    private float currentHealth;
+    public float maxHealth;
+    public GameObject healthBar;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    // Use this for initialization
+    void Start () {
+        currentHealth = maxHealth;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,11 +35,16 @@ public class FollowEnemy : MonoBehaviour {
     {
         if (collisionInfo.collider.tag.Equals("Firework"))
         {
-            health--;
-            if(health <= 0)
+            currentHealth--;
+            reduceHealthBar(currentHealth / maxHealth);
+            if(currentHealth<=0)
             {
                 Destroy(this.gameObject);
             }
         }
+    }
+    void reduceHealthBar(float remainingHealth)
+    {
+        healthBar.transform.localScale = new Vector3(remainingHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 }
