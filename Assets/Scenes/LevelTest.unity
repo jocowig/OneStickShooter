@@ -3719,10 +3719,6 @@ Prefab:
       propertyPath: myPlay
       value: 
       objectReference: {fileID: 310106952}
-    - target: {fileID: 174628, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
   m_IsPrefabParent: 0
@@ -5516,14 +5512,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 310106951}
-    - target: {fileID: 11457956, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: followTime
-      value: .150000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 11457956, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: followSpeed
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
   m_IsPrefabParent: 0
@@ -6263,10 +6251,6 @@ Prefab:
     - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 199712, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
-      propertyPath: m_Name
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
