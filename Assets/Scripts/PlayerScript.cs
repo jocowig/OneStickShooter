@@ -26,11 +26,9 @@ public class PlayerScript : MonoBehaviour {
         elapsedTime += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            if (elapsedTime > fireRate)
-            {
                 mouseDown = true;
-                elapsedTime = 0;
-            }
+            
+            
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -56,14 +54,17 @@ public class PlayerScript : MonoBehaviour {
 
         Vector3 movement = new Vector3(horizontal, 0, vertical);
         rb.AddForce(movement * speed / Time.deltaTime);
-        if(mouseDown)
+        if(mouseDown && elapsedTime > fireRate)
         {
             GameObject instProjectile = Instantiate(projectile) as GameObject;
-            instProjectile.transform.position = transform.forward;
+            instProjectile.transform.position = transform.Find("Projectile Shooter").transform.position;
             Rigidbody projRB = projectile.GetComponent<Rigidbody>();
             projRB.AddForce(lookDir * speed / Time.deltaTime);
+            Debug.Log("Projectile: " + instProjectile.transform.position);
+            Debug.Log("Player: " +transform.position);
             Vector3 negativeDir = new Vector3(-lookDir.x, 0, -lookDir.z);
             rb.AddForce(negativeDir * speed / Time.deltaTime);
+            elapsedTime = 0;
         }
     }
 }
