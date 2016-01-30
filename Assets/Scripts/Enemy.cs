@@ -18,9 +18,10 @@ public class Enemy : MonoBehaviour {
 	    if (player != null)
         {
             elapsedTime += Time.deltaTime;
+            //Debug.Log("elapesed time " + elapsedTime);
             if (elapsedTime > followTime)
             {
-                iTween.MoveUpdate(player, player.transform.position, followSpeed);
+                iTween.MoveTo(this.gameObject, player.transform.position, followSpeed);
                 elapsedTime = 0f;
             }
         }

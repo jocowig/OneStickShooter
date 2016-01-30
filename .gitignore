@@ -328,3 +328,5 @@ _Pvt_Extensions
 *.resources
 test-results/
 
+Assets/Materials/spacetexture.jpg
+Assets/Textures/spacetexture.jpg
