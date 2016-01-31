@@ -141,6 +141,7 @@ public class PlayerScript : MonoBehaviour
         healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 		if (PlayerScript.currentHealth <= 0)
         {
+            AudioManager.Instance.Stop();
             SceneManager.LoadScene("StartScreen");
 
         }
