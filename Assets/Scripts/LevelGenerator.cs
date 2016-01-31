@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour
 {
 
-    public TextAsset jsonText;
+    public TextAsset[] jsonText;
 
     public Sprite[] tiles; // add the sprites from the sheet in the unity editor
 
@@ -217,7 +217,8 @@ public class LevelGenerator : MonoBehaviour
         // string roomJson = randomRoom.ToString();
         // return roomJson;
 		//Debug.Log(jsonText.text);
-        return jsonText.text;
+		jsonText.Shuffle();
+		return jsonText [0].text;
     }
     
     string GetRandomExit()
