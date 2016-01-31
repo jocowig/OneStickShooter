@@ -15,6 +15,15 @@ public class FireworkScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Explosion = Resources.Load("FireWorkExplosion") as GameObject;
+		if (UnityEngine.Random.value > .4) {
+			AudioSource audio = gameObject.AddComponent<AudioSource> ();
+			audio.pitch = UnityEngine.Random.Range (0.65f, 1.15f);
+			audio.clip = AudioManager.Instance.GetRandomFirework ();
+			audio.loop = false;
+			audio.spatialBlend = 1.0f;
+			audio.volume = UnityEngine.Random.Range (0.45f, .75f);
+			audio.Play ();
+		}
 	}
 
     // Update is called once per frame
