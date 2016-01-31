@@ -13,6 +13,12 @@ public class LevelGenerator : MonoBehaviour
 
     List<GameObject> rooms = new List<GameObject>(); // Holds all the rooms
 
+	public GameObject enemyPrefab;
+	public GameObject slowPrefab;
+	public GameObject damagePrefab;
+
+	public GameObject player;
+
     void Start()
     {
         //jsonText = (TextAsset)Resources.Load("testLevel.json");
@@ -24,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
     GameObject parseRoomJson(string roomFile)
     {
         JSONNode roomData = JSON.Parse(roomFile);
-		Debug.Log ("Making room " + roomData["layers"][0]["tiles"].ToString());
+		//Debug.Log ("Making room " + roomData["layers"][0]["tiles"].ToString());
         
         GameObject room = new GameObject();
         room.AddComponent<Room>();
@@ -32,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
 
 		//Debug.Log ("Before loop " + roomData["layers"]["tiles"].AsObject.ToString());
 		//Floor
-		foreach (JSONNode tile in roomData["layers"][1]["tiles"].AsArray)
+		foreach (JSONNode tile in roomData["layers"][2]["tiles"].AsArray)
         {
 			if (Int32.Parse (tile ["tile"]) >= 0) {
 				//Debug.Log (tile.ToString());
@@ -46,7 +52,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
 		// walls
-		foreach (JSONNode tile in roomData["layers"][0]["tiles"].AsArray) {
+		foreach (JSONNode tile in roomData["layers"][1]["tiles"].AsArray) {
 			if (Int32.Parse (tile ["tile"]) >= 0) {
 				//Debug.Log (tile.ToString());
 				GameObject newTile = new GameObject();
@@ -56,10 +62,49 @@ public class LevelGenerator : MonoBehaviour
 				newTile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
 				newTile.name = "wall_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
 				renderer.sortingOrder = 1;
-				newTile.AddComponent<BoxCollider> ().size = new Vector3(1, 1, 1);
+				BoxCollider boxCollider = newTile.AddComponent<BoxCollider> ();
+				boxCollider.size = new Vector3 (1f, 1f, 2f);
+				boxCollider.center = new Vector3 (0.5f, 0.5f, -1f);
 			}
 		}
 
+		//Enemies
+		foreach (JSONNode tile in roomData["layers"][0]["tiles"].AsArray) {
+			int enemyType = Int32.Parse (tile ["tile"]);
+			if (enemyType > 0) {
+				GameObject enemy;
+				switch (enemyType) {
+				case 2:
+					enemy = Instantiate (enemyPrefab);
+					enemy.GetComponent<FollowEnemy> ().player = player;
+					room.GetComponent<Room> ().enemies.Add (enemy);
+					break;
+				case 3:
+					enemy = Instantiate (slowPrefab);
+					break;
+				case 4:
+					enemy = Instantiate (damagePrefab);
+					break;
+				case 5:
+					float rand = UnityEngine.Random.value;
+					if (rand > .66f) {
+						enemy = Instantiate (enemyPrefab);
+					} else if (rand > .33f) {
+						enemy = Instantiate (slowPrefab);
+					} else {
+						enemy = Instantiate (damagePrefab);
+					}
+					break;
+				default:
+					enemy = Instantiate (enemyPrefab);
+					room.GetComponent<Room> ().enemies.Add (enemy);
+					break;
+				}
+				enemy.transform.SetParent(room.transform);
+				enemy.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]), -1);
+				enemy.name = "enemy_" + enemy.transform.position.x + "_" + enemy.transform.position.y;
+			}
+		}
         // Add Collision prefab to room
 
         // Add Trigger prefab to detect room entry
@@ -89,29 +134,29 @@ public class LevelGenerator : MonoBehaviour
                     if (randExit == "e")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x + 25, rooms[0].transform.position.y);
-						Debug.Log ("Adding exit w");
+						//Debug.Log ("Adding exit w");
 						newRoom.GetComponent<Room>().addToDictionary("w", rooms[0]);
 
                     }
                     else if (randExit == "w")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x - 25, rooms[0].transform.position.y);
-						Debug.Log ("Adding exit e");
+						//Debug.Log ("Adding exit e");
 						newRoom.GetComponent<Room>().addToDictionary("e", rooms[0]);
                     }
                     else if (randExit == "n")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x, rooms[0].transform.position.y + 25);
-						Debug.Log ("Adding exit s");
+						//Debug.Log ("Adding exit s");
 						newRoom.GetComponent<Room>().addToDictionary("s", rooms[0]);
                     }
                     else {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x, rooms[0].transform.position.y -  25);
-						Debug.Log ("Adding exit n");
+						//Debug.Log ("Adding exit n");
 						newRoom.GetComponent<Room>().addToDictionary("n", rooms[0]);
                     }
 
-					Debug.Log ("Adding exit " + randExit);
+					//Debug.Log ("Adding exit " + randExit);
 					rooms[0].GetComponent<Room>().addToDictionary(randExit, newRoom);
 
 					newRoom.name = "Room_" + roomsLeft;
