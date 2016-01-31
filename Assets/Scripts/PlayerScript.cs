@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     public float fireRate = .25f;
 
 	public static int bossesKilled = 0;
+    public static float maxSpeed = 5;
 
     // Use this for initialization
     void Start()
@@ -117,6 +118,7 @@ public class PlayerScript : MonoBehaviour
         if (other.tag.Equals("Speed"))
         {
 			PlayerScript.speed++;
+            PlayerScript.maxSpeed++;
             Destroy(other.gameObject);
         }
         if (other.tag.Equals("Weapon"))

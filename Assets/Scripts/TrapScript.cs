@@ -35,7 +35,7 @@ public class TrapScript : MonoBehaviour {
             }
             if (trapType == "slow" && canStop)
             {
-				originalSpeed = PlayerScript.speed;
+				originalSpeed = PlayerScript.maxSpeed;
 				PlayerScript.speed = 1;
             }
         }
