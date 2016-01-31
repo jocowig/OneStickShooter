@@ -16,7 +16,7 @@ public class GameControlScript : MonoBehaviour {
 
     public void SwitchToGameScreen()
     {
-        SceneManager.LoadScene("LevelTest");
+        SceneManager.LoadScene("LevelGeneration");
     }
     public void CloseGame()
     {
