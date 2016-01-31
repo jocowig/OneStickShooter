@@ -294,6 +294,7 @@ MonoBehaviour:
   speed: 10
   dir: {x: 0, y: 0, z: 0}
   bulletLife: 2
+  damage: 1
 --- !u!136 &13646214
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -328,6 +329,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -103,7 +103,7 @@ public class LevelGenerator : MonoBehaviour
 					break;
 				case 6: // Random chance enemy
 					float randChance = UnityEngine.Random.value;
-					if (randChance > .33) {
+					if (randChance > .66) {
 						enemy = Instantiate (enemyPrefab);
 						enemy.GetComponent<FollowEnemy> ().player = player;
 						room.GetComponent<Room> ().enemies.Add (enemy);
