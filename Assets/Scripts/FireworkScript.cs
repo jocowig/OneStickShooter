@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class FireworkScript : MonoBehaviour {
 
@@ -24,18 +25,33 @@ public class FireworkScript : MonoBehaviour {
         elapsedTime += Time.deltaTime;
         if (elapsedTime > bulletLife)
         {
-            instExplosion = Instantiate(Explosion) as GameObject;
-            instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-            Destroy(this.gameObject);
+            try {
+                instExplosion = Instantiate(Explosion) as GameObject;
+                instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                Destroy(this.gameObject);
+            }
+            catch(ArgumentException e)
+            {
 
+            }
         }
 
         //Debug.Log("Elapsed " + elapsedTime + " Bullet life " + bulletLife);
     }
     void OnTriggerEnter(Collider collisionInfo)
     {
-        instExplosion = Instantiate(Explosion) as GameObject;
-        instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-        Destroy(this.gameObject);
+        if (collisionInfo.tag.Equals("Enemy") || collisionInfo.tag.Equals("Wall"))
+        {
+            try
+            {
+                instExplosion = Instantiate(Explosion) as GameObject;
+                instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                Destroy(this.gameObject);
+            }
+            catch (ArgumentException e)
+            {
+
+            }
+        }
     }
 }

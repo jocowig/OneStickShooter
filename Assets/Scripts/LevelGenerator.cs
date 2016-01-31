@@ -65,6 +65,7 @@ public class LevelGenerator : MonoBehaviour
 				SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer>();
 				renderer.sprite = tiles[Int32.Parse(tile["tile"])];
 				newTile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
+                newTile.tag = "Wall";
 				newTile.name = "wall_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
 				renderer.sortingOrder = 1;
 				BoxCollider boxCollider = newTile.AddComponent<BoxCollider> ();
