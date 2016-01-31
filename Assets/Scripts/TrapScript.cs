@@ -39,6 +39,11 @@ public class TrapScript : MonoBehaviour {
 				originalSpeed = PlayerScript.maxSpeed;
 				PlayerScript.speed = 1;
             }
+            if (trapType == "speed" && canStop)
+            {
+                originalSpeed = PlayerScript.maxSpeed;
+                PlayerScript.speed = 10;
+            }
         }
     }
 
@@ -46,7 +51,7 @@ public class TrapScript : MonoBehaviour {
     {
         if(other.tag.Equals("Player"))
         {
-            if (trapType == "slow")
+            if (trapType == "slow" || trapType == "speed")
             {
 				iTween.AudioTo(AudioManager.Instance.gameObject, 1, 1, .15f);
 				elapsed = 0;
