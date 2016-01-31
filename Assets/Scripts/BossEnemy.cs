@@ -23,7 +23,7 @@ public class BossEnemy : MonoBehaviour {
 		sound = gameObject.AddComponent<AudioSource> ();
 		sound.clip = AudioManager.Instance.boss;
 		sound.loop = false;
-		sound.spatialBlend = 1f;
+		//sound.spatialBlend = 1f;
 	}
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class BossEnemy : MonoBehaviour {
             reduceHealthBar(currentHealth / maxHealth);
 
 			if (UnityEngine.Random.value > .60 && !sound.isPlaying) {
-				
+				sound.volume = 1f;
 				sound.pitch = UnityEngine.Random.Range (.75f, 1.25f);
 				sound.Play ();
 			}

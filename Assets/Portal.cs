@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour {
 				PlayerScript.maxHealth += Random.Range (2, 4);
 				BossEnemy.maxHealth += Random.Range (5, 10);
 				LevelGenerator.RoomsToGenerate += Random.Range (2, 6);
-				SceneManager.LoadScene ("LevelGeneration");
+				SceneManager.LoadScene ("LoadingScreen");
 			}
 		}
 	}
