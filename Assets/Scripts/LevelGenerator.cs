@@ -92,7 +92,10 @@ public class LevelGenerator : MonoBehaviour
 				case 4: // Damage trap
 					enemy = Instantiate (damagePrefab);
 					break;
-				case 5: // Random enemy
+				case 5: // Speed trap
+					enemy = Instantiate (speedPrefab);
+					break;
+				case 6: // Random enemy
 					float rand = UnityEngine.Random.value;
 					if (rand > .75f) {
 						enemy = Instantiate (enemyPrefab);
@@ -104,7 +107,7 @@ public class LevelGenerator : MonoBehaviour
 						enemy = Instantiate (speedPrefab);
 					}
 					break;
-				case 6: // Random chance enemy
+				case 7: // Random chance enemy
 					float randChance = UnityEngine.Random.value;
 					if (randChance > .66) {
 						enemy = Instantiate (enemyPrefab);
@@ -114,7 +117,7 @@ public class LevelGenerator : MonoBehaviour
 						enemy = null;
 					}
 					break;
-				case 7: // Boss
+				case 8: // Boss
 					enemy = Instantiate (bossPrefab);
 					room.GetComponent<Room> ().boss = enemy;
 					break;
