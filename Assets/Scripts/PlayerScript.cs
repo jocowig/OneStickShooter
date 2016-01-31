@@ -67,6 +67,7 @@ public class PlayerScript : MonoBehaviour
         if(joystickMoving && elapsedTime > fireRate)
         {
             GameObject instProjectile = Instantiate(projectile) as GameObject;
+            instProjectile.transform.rotation = Quaternion.LookRotation(transform.forward.normalized);
             instProjectile.transform.position = transform.Find("Projectile Shooter").transform.position;
             instProjectile.transform.GetComponent<FireworkScript>().dir = transform.forward.normalized;
             Vector3 negativeDir = new Vector3(-transform.forward.x, -transform.forward.y, 0);
@@ -76,6 +77,8 @@ public class PlayerScript : MonoBehaviour
         if (mouseDown && elapsedTime > fireRate)
         {
             GameObject instProjectile = Instantiate(projectile) as GameObject;
+            instProjectile.transform.LookAt(transform.forward.normalized);
+            instProjectile.transform.rotation = Quaternion.LookRotation(transform.forward.normalized);
             instProjectile.transform.position = transform.Find("Projectile Shooter").transform.position;
             instProjectile.transform.GetComponent<FireworkScript>().dir = lookDir.normalized;
             //Debug.Log("Projectile: " + instProjectile.transform.position);
