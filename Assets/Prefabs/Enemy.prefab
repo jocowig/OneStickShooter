@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 431658}
   - 114: {fileID: 11457956}
   - 65: {fileID: 6527338}
-  - 54: {fileID: 5482334}
+  - 54: {fileID: 5420838}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -136,7 +136,7 @@ Transform:
   - {fileID: 22473592}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!54 &5482334
+--- !u!54 &5420838
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FireworkScript : MonoBehaviour {
 
+    GameObject Explosion;
     public float speed = 10f;
     public Vector3 dir;
     public float bulletLife = 2f;
@@ -10,7 +11,7 @@ public class FireworkScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-       
+        Explosion = Resources.Load("FireWorkExplosion") as GameObject;
 	}
 
     // Update is called once per frame
@@ -22,13 +23,18 @@ public class FireworkScript : MonoBehaviour {
         elapsedTime += Time.deltaTime;
         if (elapsedTime > bulletLife)
         {
+            GameObject explosion = Instantiate(Explosion) as GameObject;
+            explosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             Destroy(this.gameObject);
+
         }
 
         //Debug.Log("Elapsed " + elapsedTime + " Bullet life " + bulletLife);
     }
     void OnCollisionEnter(Collision collisionInfo)
     {
+        GameObject explosion = Instantiate(Explosion) as GameObject;
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         Destroy(this.gameObject);
     }
 }
