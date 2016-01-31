@@ -10,6 +10,7 @@ public class FireworkScript : MonoBehaviour {
     public float bulletLife = 2f;
     private float elapsedTime = 0f;
     GameObject instExplosion;
+    public int damage;
 
     // Use this for initialization
     void Start () {
