@@ -1,32 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour {
+	
+	private static AudioManager instance = null;
+	public static AudioManager Instance { get { return instance; } }
 
-	public static AudioClip music;
-	public static AudioSource musicSource;
+	public AudioClip music;
 
-	// Use this for initialization
-	void Start () {
-		if (AudioManager.music == null) {
-			AudioManager.music = Resources.Load("music.ogg") as AudioClip;
-		}
-
-		if (AudioManager.musicSource == null) {
-			musicSource = gameObject.AddComponent<AudioSource> ();
-			musicSource.clip = AudioManager.music;
-		}
-
-		if (!AudioManager.musicSource.isPlaying) {
-			AudioManager.musicSource.Play ();
-			AudioManager.musicSource.loop = true;
-		}
-
-		DontDestroyOnLoad (this.gameObject);
+	void Awake() {
+		instance = this;
+		GetComponent<AudioSource> ().clip = music;
+		DontDestroyOnLoad(gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void Play() {
+		GetComponent<AudioSource> ().Play ();
+	}
+
+	public void Stop() {
+		GetComponent<AudioSource> ().Stop ();
 	}
 }
