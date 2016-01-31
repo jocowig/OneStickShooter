@@ -16,11 +16,17 @@ public class FollowEnemy : MonoBehaviour {
     public float maxHealth;
     public GameObject healthBar;
 
+	public float soundTime;
+
 	public bool followPlayer = false;
+
+	AudioSource sound;
 
     // Use this for initialization
     void Start () {
         currentHealth = maxHealth;
+		sound = gameObject.AddComponent<AudioSource> ();
+		sound.spatialBlend = 1f;
     }
 	
 	// Update is called once per frame
@@ -36,6 +42,21 @@ public class FollowEnemy : MonoBehaviour {
                // Debug.Log("Following");
             }
         }
+
+		if (followPlayer) {
+			soundTime -= Time.deltaTime;
+			if (soundTime < 0) {
+				PlaySound ();
+			}
+		}
+	}
+
+	void PlaySound(){
+		sound.volume = UnityEngine.Random.Range (.65f, .85f);
+		sound.pitch = UnityEngine.Random.Range (.65f, 1.25f);
+		sound.clip = AudioManager.Instance.GetRandomEnemy ();
+		sound.Play ();
+		soundTime = UnityEngine.Random.Range (1f, 3f);
 	}
 
     void OnTriggerEnter(Collider collisionInfo)

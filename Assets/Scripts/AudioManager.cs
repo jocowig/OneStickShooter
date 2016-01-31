@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip music;
 	public AudioClip portal;
 	public AudioClip[] fireworks;
+	public AudioClip[] enemies;
 
 	void Awake() {
 		instance = this;
@@ -34,5 +35,10 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip GetRandomFirework(){
 		fireworks.Shuffle ();
 		return fireworks [0];
+	}
+
+	public AudioClip GetRandomEnemy() {
+		enemies.Shuffle ();
+		return enemies [0];
 	}
 }
