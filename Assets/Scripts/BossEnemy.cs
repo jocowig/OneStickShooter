@@ -3,13 +3,15 @@ using System.Collections;
 
 public class BossEnemy : MonoBehaviour {
 
-    public float speed = 1f;
+    public static float speed = 1f;
     public GameObject player;
     private float currentHealth;
     public float maxHealth;
     public GameObject healthBar;
 
     public bool followPlayer = false;
+
+	public GameObject portal;
 
     // Use this for initialization
     void Start()
@@ -42,6 +44,9 @@ public class BossEnemy : MonoBehaviour {
             reduceHealthBar(currentHealth / maxHealth);
             if (currentHealth <= 0)
             {
+				GameObject port = Instantiate (portal);
+				PlayerScript.bossesKilled++;
+				port.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y + 2, -1);
                 Destroy(this.gameObject);
             }
         }

@@ -2,6 +2,13 @@
 using System.Collections;
 
 public class TrapScript : MonoBehaviour {
+
+	float originalSpeed;
+	float timeLimit = .5f;
+	float elapsed = 0f;
+
+	bool canStop = true;
+
     public string trapType;
 	// Use this for initialization
 	void Start () {
@@ -9,7 +16,12 @@ public class TrapScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (!canStop) {
+			elapsed += Time.deltaTime;
+			if (elapsed > timeLimit) {
+				canStop = true;
+			}
+		}
 	}
     void OnTriggerEnter(Collider other)
     {
@@ -21,9 +33,10 @@ public class TrapScript : MonoBehaviour {
                 //Debug.Log("Entered Damage Collider");
                 other.gameObject.GetComponent<PlayerScript>().reduceHealthBar();
             }
-            if (trapType == "slow")
+            if (trapType == "slow" && canStop)
             {
-                other.gameObject.GetComponent<PlayerScript>().speed = 1;
+				originalSpeed = PlayerScript.speed;
+				PlayerScript.speed = 1;
             }
         }
     }
@@ -34,7 +47,9 @@ public class TrapScript : MonoBehaviour {
         {
             if (trapType == "slow")
             {
-                other.gameObject.GetComponent<PlayerScript>().speed = 5;
+				elapsed = 0;
+				canStop = false;
+                PlayerScript.speed = originalSpeed;
             }
         }
     }

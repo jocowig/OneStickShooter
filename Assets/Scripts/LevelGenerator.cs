@@ -25,7 +25,7 @@ public class LevelGenerator : MonoBehaviour
 	private Dictionary<string, bool> roomsPlaced = new Dictionary<string, bool>();
 
 	public int maxTries = 500;
-	public int RoomsToGenerate = 6;
+	public static int RoomsToGenerate = 6;
 
     void Start()
     {

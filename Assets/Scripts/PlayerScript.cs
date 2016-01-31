@@ -8,14 +8,14 @@ public class PlayerScript : MonoBehaviour
 
     GameObject projectile;
     public GameObject healthBar;
-    public float speed;
-    public float currentHealth;
+    public static float speed = 5;
+    public static float currentHealth;
     public float maxHealth;
     Rigidbody rb;
     bool mouseDown;
     bool joystickMoving;
     bool usingJoystick;
-    public int playerDamage;
+    public static int playerDamage = 1;
 
     Vector3 lookPos;
     Vector3 lookDir;
@@ -23,13 +23,19 @@ public class PlayerScript : MonoBehaviour
     private float elapsedTime = 0f;
     public float fireRate = .25f;
 
+	public static int bossesKilled = 0;
+
     // Use this for initialization
     void Start()
     {
-        playerDamage = 1;
-        currentHealth = maxHealth;
+		if (bossesKilled == 0) {
+			playerDamage = 1;
+			currentHealth = maxHealth;
+		}
         projectile = Resources.Load("Firework") as GameObject;
         rb = GetComponent<Rigidbody>();
+
+		healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     void Update()
@@ -110,12 +116,12 @@ public class PlayerScript : MonoBehaviour
         }
         if (other.tag.Equals("Speed"))
         {
-            speed++;
+			PlayerScript.speed++;
             Destroy(other.gameObject);
         }
         if (other.tag.Equals("Weapon"))
         {
-            playerDamage++;
+            PlayerScript.playerDamage++;
             projectile.GetComponent<FireworkScript>().damage = playerDamage;
             Destroy(other.gameObject);
         }
@@ -123,15 +129,15 @@ public class PlayerScript : MonoBehaviour
 
     private void refillHealthBar()
     {
-        currentHealth = maxHealth;
+		PlayerScript.currentHealth = maxHealth;
         healthBar.transform.localScale = new Vector3(1, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     public void reduceHealthBar()
     {
-        currentHealth--;
+		PlayerScript.currentHealth--;
         healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-        if (currentHealth <= 0)
+		if (PlayerScript.currentHealth <= 0)
         {
             SceneManager.LoadScene("StartScreen");
 

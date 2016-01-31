@@ -36,7 +36,7 @@ public class Room : MonoBehaviour {
 	}
 
 	void Update() {
-		cover.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y + 25, -2);
+		cover.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y + 24, -2);
 	}
 
 	void OnTriggerEnter(Collider other)

@@ -377,11 +377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ba170466f316f4aac716714b5153ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
   player: {fileID: 199712, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
   maxHealth: 25
   healthBar: {fileID: 119424}
   followPlayer: 0
+  portal: {fileID: 179066, guid: f86973e4049ae45c79e2dc6e90e73705, type: 2}
 --- !u!114 &11473310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,6 +592,10 @@ Prefab:
       propertyPath: speed
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 179066, guid: f86973e4049ae45c79e2dc6e90e73705, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157832}
