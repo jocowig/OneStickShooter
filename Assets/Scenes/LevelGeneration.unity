@@ -114,7 +114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -185,6 +185,7 @@ MonoBehaviour:
   slowPrefab: {fileID: 176486, guid: 1876e3f2eaf38204e9d4123b7948c8df, type: 2}
   damagePrefab: {fileID: 182290, guid: 9af5d894ff7290d4c9be6c8aa142230d, type: 2}
   bossPrefab: {fileID: 157832, guid: 28fdba6f9f2549f4fabaf6c29fc7ad3a, type: 2}
+  speedPrefab: {fileID: 129276, guid: c1c8b8ad799faf54dbd63fc82e103d39, type: 2}
   player: {fileID: 5504891}
   startingRoomJson: {fileID: 4900000, guid: a7833df62879e4705bd170f8729d01ed, type: 3}
   bossRoom: {fileID: 4900000, guid: ee32dce36047c470baad622efbcc0279, type: 3}

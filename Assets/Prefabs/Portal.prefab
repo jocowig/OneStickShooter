@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8deaca6fae3747fc8740354bf1bd039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalSound: {fileID: 8300000, guid: 8d3a095c2242d499ca1817625aeadcf1, type: 3}
 --- !u!212 &21270416
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -117,7 +118,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: portalSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d3a095c2242d499ca1817625aeadcf1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179066}
