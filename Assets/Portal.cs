@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour {
 
-	public AudioClip portalSound;
-
 	private float timer = .80f;
 	private float elapsed = 0;
 
@@ -16,7 +14,7 @@ public class Portal : MonoBehaviour {
 		//Debug.Log("Trap Collision Entered");
 		if (other.tag.Equals("Player"))
 		{
-			AudioSource.PlayClipAtPoint (portalSound, this.transform.position);
+			AudioSource.PlayClipAtPoint (AudioManager.Instance.portal, this.transform.position);
 			playerEntered = true;
 		}
 	}

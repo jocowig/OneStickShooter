@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour {
 	public static AudioManager Instance { get { return instance; } }
 
 	public AudioClip music;
+	public AudioClip portal;
+	public AudioClip[] fireworks;
 
 	void Awake() {
 		instance = this;
@@ -21,5 +23,10 @@ public class AudioManager : MonoBehaviour {
 
 	public void Stop() {
 		GetComponent<AudioSource> ().Stop ();
+	}
+
+	public AudioClip GetRandomFirework(){
+		fireworks.Shuffle ();
+		return fireworks [0];
 	}
 }

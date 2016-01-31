@@ -1911,6 +1911,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: fireworks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 496776, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1947,6 +1951,18 @@ Prefab:
       propertyPath: music
       value: 
       objectReference: {fileID: 8300000, guid: 4d86d30005ab24ee281d0265d2991fd1, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: fireworks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b793b8645660f4c1dbef17c914c52e23, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: fireworks.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4019a5c2da8dd4417b3f64b31a2efd73, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d3a095c2242d499ca1817625aeadcf1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
   m_IsPrefabParent: 0
