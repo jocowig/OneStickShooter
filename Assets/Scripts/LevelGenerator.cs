@@ -31,16 +31,34 @@ public class LevelGenerator : MonoBehaviour
         room.transform.SetParent(this.transform);
 
 		//Debug.Log ("Before loop " + roomData["layers"]["tiles"].AsObject.ToString());
-		foreach (JSONNode tile in roomData["layers"][0]["tiles"].AsArray)
+		//Floor
+		foreach (JSONNode tile in roomData["layers"][1]["tiles"].AsArray)
         {
-			//Debug.Log (tile.ToString());
-            GameObject newTile = new GameObject();
-            newTile.transform.SetParent(room.transform);
-            SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer>();
-            renderer.sprite = tiles[Int32.Parse(tile["tile"])];
-            newTile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
-            newTile.name = "tile_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
+			if (Int32.Parse (tile ["tile"]) >= 0) {
+				//Debug.Log (tile.ToString());
+				GameObject newTile = new GameObject ();
+				newTile.transform.SetParent (room.transform);
+				SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer> ();
+				renderer.sprite = tiles [Int32.Parse (tile ["tile"])];
+				newTile.transform.position = new Vector3 (Int32.Parse (tile ["x"]), Int32.Parse (tile ["y"]));
+				newTile.name = "floor_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
+			}
         }
+
+		// walls
+		foreach (JSONNode tile in roomData["layers"][0]["tiles"].AsArray) {
+			if (Int32.Parse (tile ["tile"]) >= 0) {
+				//Debug.Log (tile.ToString());
+				GameObject newTile = new GameObject();
+				newTile.transform.SetParent(room.transform);
+				SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer>();
+				renderer.sprite = tiles[Int32.Parse(tile["tile"])];
+				newTile.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]));
+				newTile.name = "wall_" + newTile.transform.position.x + "_" + newTile.transform.position.y;
+				renderer.sortingOrder = 1;
+				newTile.AddComponent<BoxCollider> ().size = new Vector3(1, 1, 1);
+			}
+		}
 
         // Add Collision prefab to room
 
@@ -73,6 +91,7 @@ public class LevelGenerator : MonoBehaviour
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x + 25, rooms[0].transform.position.y);
 						Debug.Log ("Adding exit w");
 						newRoom.GetComponent<Room>().addToDictionary("w", rooms[0]);
+
                     }
                     else if (randExit == "w")
                     {
@@ -99,10 +118,52 @@ public class LevelGenerator : MonoBehaviour
 
                     rooms.Add(newRoom);
                     roomsLeft--;
+
+					DeleteWalls (randExit, rooms [0], newRoom);
                 }
             }
         }
     }
+
+	void DeleteWalls(string dir, GameObject baseRoom, GameObject newRoom) {
+		if (dir == "e") {
+			// Base room
+			Destroy (baseRoom.transform.FindChild ("wall_24_11").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_24_12").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_24_13").gameObject);
+			//New Room
+			Destroy (newRoom.transform.FindChild ("wall_0_11").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_0_12").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_0_13").gameObject);
+		} else if (dir == "w") {
+			// Base room
+			Destroy (baseRoom.transform.FindChild ("wall_0_11").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_0_12").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_0_13").gameObject);
+			//New Room
+			Destroy (newRoom.transform.FindChild ("wall_24_11").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_24_12").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_24_13").gameObject);
+		} else if (dir == "n") {
+			// Base room
+			Destroy (baseRoom.transform.FindChild ("wall_11_24").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_12_24").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_13_24").gameObject);
+			//New Room
+			Destroy (newRoom.transform.FindChild ("wall_11_0").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_12_0").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_13_0").gameObject);
+		} else {
+			// Base room
+			Destroy (baseRoom.transform.FindChild ("wall_11_0").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_12_0").gameObject);
+			Destroy (baseRoom.transform.FindChild ("wall_13_0").gameObject);
+			//New Room
+			Destroy (newRoom.transform.FindChild ("wall_11_24").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_12_24").gameObject);
+			Destroy (newRoom.transform.FindChild ("wall_13_24").gameObject);
+		}
+	}
 
     string GetRandomRoom()
     {
