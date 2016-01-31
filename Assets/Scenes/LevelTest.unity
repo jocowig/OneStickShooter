@@ -319,7 +319,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edddb3b798d9cf4a8b893833c3f4d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonText: {fileID: 4900000, guid: 2b10418fdbac90f42900c52e3eaa2f76, type: 3}
+  jsonText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tiles: []
+  enemyPrefab: {fileID: 0}
+  slowPrefab: {fileID: 0}
+  damagePrefab: {fileID: 0}
+  player: {fileID: 0}
+  startingRoomJson: {fileID: 0}
+  maxTries: 500
+  RoomsToGenerate: 6
 --- !u!4 &1247801918
 Transform:
   m_ObjectHideFlags: 0

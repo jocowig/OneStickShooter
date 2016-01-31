@@ -8,9 +8,10 @@ public class FireworkScript : MonoBehaviour {
     public Vector3 dir;
     public float bulletLife = 2f;
     private float elapsedTime = 0f;
+    GameObject instExplosion;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Explosion = Resources.Load("FireWorkExplosion") as GameObject;
 	}
 
@@ -23,8 +24,8 @@ public class FireworkScript : MonoBehaviour {
         elapsedTime += Time.deltaTime;
         if (elapsedTime > bulletLife)
         {
-            GameObject explosion = Instantiate(Explosion) as GameObject;
-            explosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            instExplosion = Instantiate(Explosion) as GameObject;
+            instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             Destroy(this.gameObject);
 
         }
@@ -33,8 +34,8 @@ public class FireworkScript : MonoBehaviour {
     }
     void OnCollisionEnter(Collision collisionInfo)
     {
-        GameObject explosion = Instantiate(Explosion) as GameObject;
-        explosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        instExplosion = Instantiate(Explosion) as GameObject;
+        instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         Destroy(this.gameObject);
     }
 }
