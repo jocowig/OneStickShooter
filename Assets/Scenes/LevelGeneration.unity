@@ -168,8 +168,10 @@ MonoBehaviour:
   enemyPrefab: {fileID: 110938, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
   slowPrefab: {fileID: 176486, guid: 1876e3f2eaf38204e9d4123b7948c8df, type: 2}
   damagePrefab: {fileID: 182290, guid: 9af5d894ff7290d4c9be6c8aa142230d, type: 2}
+  bossPrefab: {fileID: 157832, guid: 28fdba6f9f2549f4fabaf6c29fc7ad3a, type: 2}
   player: {fileID: 5504891}
   startingRoomJson: {fileID: 4900000, guid: a7833df62879e4705bd170f8729d01ed, type: 3}
+  bossRoom: {fileID: 4900000, guid: ee32dce36047c470baad622efbcc0279, type: 3}
   maxTries: 50
   RoomsToGenerate: 12
 --- !u!4 &973568175
