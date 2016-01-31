@@ -9,28 +9,32 @@ public class LevelGenerator : MonoBehaviour
 
     public TextAsset jsonText;
 
-    Sprite[] tiles; // add the sprites from the sheet in the unity editor
+    public Sprite[] tiles; // add the sprites from the sheet in the unity editor
 
     List<GameObject> rooms = new List<GameObject>(); // Holds all the rooms
 
     void Start()
     {
-        jsonText = (TextAsset)Resources.Load("testLevel.json");
+        //jsonText = (TextAsset)Resources.Load("testLevel.json");
         // TODO: add sprite sheet
-        tiles = Resources.LoadAll<Sprite>("rougelikeDungeon_transparent");
+        //tiles = Resources.LoadAll<Sprite>("rougelikeDungeon_transparent");
+		GenerateLevel (6);
     }
     
     GameObject parseRoomJson(string roomFile)
     {
         JSONNode roomData = JSON.Parse(roomFile);
+		Debug.Log ("Making room " + roomData["layers"][0]["tiles"].ToString());
         
         GameObject room = new GameObject();
         room.AddComponent<Room>();
         room.transform.SetParent(this.transform);
         room.name = "Room";
 
-        foreach (JSONNode tile in roomData["layers"]["tiles"].AsArray)
+		//Debug.Log ("Before loop " + roomData["layers"]["tiles"].AsObject.ToString());
+		foreach (JSONNode tile in roomData["layers"][0]["tiles"].AsArray)
         {
+			Debug.Log (tile.ToString());
             GameObject newTile = new GameObject();
             newTile.transform.SetParent(room.transform);
             SpriteRenderer renderer = newTile.AddComponent<SpriteRenderer>();
@@ -98,6 +102,7 @@ public class LevelGenerator : MonoBehaviour
         //JSONNode randomRoom = levelData.AsArray[UnityEngine.Random.Range(0, levelData.AsArray.Count)];
         // string roomJson = randomRoom.ToString();
         // return roomJson;
+		//Debug.Log(jsonText.text);
         return jsonText.text;
     }
     
