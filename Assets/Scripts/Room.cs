@@ -20,4 +20,22 @@ public class Room : MonoBehaviour {
 		values.Add (room);
 		exits.Add (exit, room);
 	}
+
+	void Start() {
+		BoxCollider boxColl = gameObject.AddComponent<BoxCollider> ();
+		boxColl.isTrigger = true;
+		boxColl.size = new Vector3 (25, 25, 2);
+		boxColl.center = new Vector3 (12.5f, 12.5f, -1);
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		//Debug.Log("Trap Collision Entered");
+		if (other.tag.Equals("Player"))
+		{
+			foreach (GameObject enemy in enemies) {
+				enemy.GetComponent<FollowEnemy> ().followPlayer = true;
+			}
+		}
+	}
 }

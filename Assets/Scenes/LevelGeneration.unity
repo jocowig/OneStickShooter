@@ -128,6 +128,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 489122, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
   m_IsPrefabParent: 0
@@ -161,6 +173,7 @@ MonoBehaviour:
   jsonText:
   - {fileID: 4900000, guid: f3bc65b020e094620bbb2bbb9b826749, type: 3}
   - {fileID: 4900000, guid: 3e8b2e12341b446cc8104f2e59230b42, type: 3}
+  - {fileID: 4900000, guid: 4d17ead5b69617844a08c08255f1205d, type: 3}
   tiles:
   - {fileID: 21300016, guid: 801e13bd3edf16f4eb4df3c3d6779cef, type: 3}
   - {fileID: 21300046, guid: 801e13bd3edf16f4eb4df3c3d6779cef, type: 3}
@@ -168,7 +181,8 @@ MonoBehaviour:
   slowPrefab: {fileID: 176486, guid: 1876e3f2eaf38204e9d4123b7948c8df, type: 2}
   damagePrefab: {fileID: 182290, guid: 9af5d894ff7290d4c9be6c8aa142230d, type: 2}
   player: {fileID: 5504891}
-  maxTries: 100
+  startingRoomJson: {fileID: 4900000, guid: a7833df62879e4705bd170f8729d01ed, type: 3}
+  maxTries: 50
   RoomsToGenerate: 12
 --- !u!4 &973568175
 Transform:
@@ -191,11 +205,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 418004, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.98
       objectReference: {fileID: 0}
     - target: {fileID: 418004, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.93
       objectReference: {fileID: 0}
     - target: {fileID: 418004, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -225,6 +239,14 @@ Prefab:
       propertyPath: myPlay
       value: 
       objectReference: {fileID: 1403336159}
+    - target: {fileID: 11456348, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
+      propertyPath: myPos.z
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010690, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
+      propertyPath: orthographic size
+      value: 7.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
   m_IsPrefabParent: 0

@@ -70,7 +70,7 @@ public class LevelGenerator : MonoBehaviour
 				renderer.sortingOrder = 1;
 				BoxCollider boxCollider = newTile.AddComponent<BoxCollider> ();
 				boxCollider.size = new Vector3 (1f, 1f, 2f);
-				boxCollider.center = new Vector3 (0.5f, 0.5f, -1f);
+				boxCollider.center = new Vector3 (0.5f, -0.5f, -1f);
 			}
 		}
 

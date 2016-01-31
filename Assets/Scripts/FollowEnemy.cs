@@ -11,6 +11,8 @@ public class FollowEnemy : MonoBehaviour {
     public float maxHealth;
     public GameObject healthBar;
 
+	public bool followPlayer = false;
+
     // Use this for initialization
     void Start () {
         currentHealth = maxHealth;
@@ -18,7 +20,7 @@ public class FollowEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (player != null)
+	    if (player != null && followPlayer)
         {
             elapsedTime += Time.deltaTime;
             //Debug.Log("elapesed time " + elapsedTime);
@@ -35,6 +37,7 @@ public class FollowEnemy : MonoBehaviour {
     {
         if (collisionInfo.collider.tag.Equals("Firework"))
         {
+			followPlayer = true;
             currentHealth--;
             reduceHealthBar(currentHealth / maxHealth);
             if(currentHealth<=0)
