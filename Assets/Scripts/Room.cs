@@ -9,6 +9,8 @@ public class Room : MonoBehaviour {
 	private Dictionary<string, GameObject> exits = new Dictionary<string, GameObject>();
 
 	public List<GameObject> enemies = new List<GameObject> ();
+
+	public GameObject boss;
 	
 	public bool HasExit(string exit){
 		//Debug.Log(exits.ContainsKey(exit));
@@ -35,6 +37,10 @@ public class Room : MonoBehaviour {
 		{
 			foreach (GameObject enemy in enemies) {
 				enemy.GetComponent<FollowEnemy> ().followPlayer = true;
+			}
+
+			if (boss != null) {
+				boss.GetComponent<BossEnemy> ().followPlayer = true;
 			}
 		}
 	}

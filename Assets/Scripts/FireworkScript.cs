@@ -32,7 +32,7 @@ public class FireworkScript : MonoBehaviour {
 
         //Debug.Log("Elapsed " + elapsedTime + " Bullet life " + bulletLife);
     }
-    void OnCollisionEnter(Collision collisionInfo)
+    void OnTriggerEnter(Collider collisionInfo)
     {
         instExplosion = Instantiate(Explosion) as GameObject;
         instExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);

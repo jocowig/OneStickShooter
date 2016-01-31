@@ -16,6 +16,7 @@ public class LevelGenerator : MonoBehaviour
 	public GameObject enemyPrefab;
 	public GameObject slowPrefab;
 	public GameObject damagePrefab;
+	public GameObject bossPrefab;
 
 	public GameObject player;
 	public TextAsset startingRoomJson;
@@ -105,9 +106,14 @@ public class LevelGenerator : MonoBehaviour
 						enemy = Instantiate (enemyPrefab);
 						enemy.GetComponent<FollowEnemy> ().player = player;
 						room.GetComponent<Room> ().enemies.Add (enemy);
+					} else {
+						enemy = null;
 					}
 					break;
 				case 7: // Boss
+					enemy = Instantiate (bossPrefab);
+					room.GetComponent<Room> ().boss = enemy;
+					break;
 				default:
 					enemy = Instantiate (enemyPrefab);
 					room.GetComponent<Room> ().enemies.Add (enemy);
@@ -144,7 +150,7 @@ public class LevelGenerator : MonoBehaviour
 				if (!rooms[0].GetComponent<Room>().HasExit(randExit) && !IsRoomTaken(randExit, rooms[0])) {
 					GameObject newRoom;
 					if (roomsLeft == 1) {
-						newRoom = parseRoomJson (bossRoom);
+						newRoom = parseRoomJson (bossRoom.text);
 					} else {
 						newRoom = parseRoomJson(GetRandomRoom());
 					}
