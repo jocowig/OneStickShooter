@@ -11,6 +11,8 @@ public class Room : MonoBehaviour {
 	public List<GameObject> enemies = new List<GameObject> ();
 
 	public GameObject boss;
+
+	public GameObject cover;
 	
 	public bool HasExit(string exit){
 		//Debug.Log(exits.ContainsKey(exit));
@@ -28,6 +30,13 @@ public class Room : MonoBehaviour {
 		boxColl.isTrigger = true;
 		boxColl.size = new Vector3 (25, 25, 2);
 		boxColl.center = new Vector3 (12.5f, 12.5f, -1);
+
+		cover = Instantiate (Resources.Load("Cover")) as GameObject;
+		cover.transform.SetParent (this.transform);
+	}
+
+	void Update() {
+		cover.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y + 25, -2);
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -35,6 +44,8 @@ public class Room : MonoBehaviour {
 		//Debug.Log("Trap Collision Entered");
 		if (other.tag.Equals("Player"))
 		{
+			cover.transform.GetComponent<SpriteRenderer> ().enabled = false;
+
 			foreach (GameObject enemy in enemies) {
 				enemy.GetComponent<FollowEnemy> ().followPlayer = true;
 			}
