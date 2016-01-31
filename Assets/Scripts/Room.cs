@@ -44,7 +44,8 @@ public class Room : MonoBehaviour {
 		//Debug.Log("Trap Collision Entered");
 		if (other.tag.Equals("Player"))
 		{
-			cover.transform.GetComponent<SpriteRenderer> ().enabled = false;
+			//cover.transform.GetComponent<SpriteRenderer> ().enabled = false;
+			iTween.ColorTo (cover, Color.clear, .15f);
 
 			foreach (GameObject enemy in enemies) {
 				enemy.GetComponent<FollowEnemy> ().followPlayer = true;
