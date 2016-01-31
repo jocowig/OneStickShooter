@@ -51,7 +51,6 @@ public class BossEnemy : MonoBehaviour {
 
 			if (UnityEngine.Random.value > .60 && !sound.isPlaying) {
 				
-				sound.volume = UnityEngine.Random.Range (.65f, 1f);
 				sound.pitch = UnityEngine.Random.Range (.75f, 1.25f);
 				sound.Play ();
 			}

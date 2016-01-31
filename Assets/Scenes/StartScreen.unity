@@ -1912,6 +1912,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
       propertyPath: fireworks.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1963,6 +1967,18 @@ Prefab:
       propertyPath: portal
       value: 
       objectReference: {fileID: 8300000, guid: 8d3a095c2242d499ca1817625aeadcf1, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: d1048cfb42a2d45f38a9067d7f547046, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: eb827b82f4eec4256ba4258a940808cb, type: 3}
+    - target: {fileID: 11443786, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 8300000, guid: cfc70e312dad6428a96a170a615fd27b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d706971a0d104703926f46085d7cebc, type: 2}
   m_IsPrefabParent: 0
