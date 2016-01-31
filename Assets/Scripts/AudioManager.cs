@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip portal;
 	public AudioClip[] fireworks;
 	public AudioClip[] enemies;
+	public AudioClip boss;
 
 	void Awake() {
 		instance = this;

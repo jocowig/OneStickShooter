@@ -13,11 +13,17 @@ public class BossEnemy : MonoBehaviour {
 
 	public GameObject portal;
 
+	AudioSource sound;
+
     // Use this for initialization
     void Start()
     {
-    currentHealth = maxHealth;
-    GetComponent<Rigidbody>().velocity = new Vector3(speed, speed);
+    	currentHealth = maxHealth;
+    	GetComponent<Rigidbody>().velocity = new Vector3(speed, speed);
+		sound = gameObject.AddComponent<AudioSource> ();
+		sound.clip = AudioManager.Instance.boss;
+		sound.loop = false;
+		sound.spatialBlend = 1f;
 	}
 
     // Update is called once per frame
@@ -42,6 +48,14 @@ public class BossEnemy : MonoBehaviour {
             followPlayer = true;
             currentHealth--;
             reduceHealthBar(currentHealth / maxHealth);
+
+			if (UnityEngine.Random.value > .60 && !sound.isPlaying) {
+				
+				sound.volume = UnityEngine.Random.Range (.65f, 1f);
+				sound.pitch = UnityEngine.Random.Range (.75f, 1.25f);
+				sound.Play ();
+			}
+
             if (currentHealth <= 0)
             {
 				GameObject port = Instantiate (portal);
