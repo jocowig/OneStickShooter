@@ -89,6 +89,18 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 199712, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
   m_PrefabInternal: {fileID: 831060136}
+--- !u!1 &616605585 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 174628, guid: 54521773a912a9a42be95209c9d2122d, type: 2}
+  m_PrefabInternal: {fileID: 1323332274}
+--- !u!45 &616605586
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 616605585}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1001 &831060136
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -94,6 +95,28 @@ public class PlayerScript : MonoBehaviour
         {
             reduceHealthBar();
         }
+        
+        
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Health"))
+        {
+            refillHealthBar();
+            Destroy(other.gameObject);
+        }
+        if (other.tag.Equals("Speed"))
+        {
+            speed++;
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void refillHealthBar()
+    {
+        currentHealth = maxHealth;
+        healthBar.transform.localScale = new Vector3(1, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     public void reduceHealthBar()
