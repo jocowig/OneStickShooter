@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject healthBar;
     public static float speed = 5;
     public static float currentHealth;
-    public float maxHealth;
+    public static float maxHealth = 5;
     Rigidbody rb;
     bool mouseDown;
     bool joystickMoving;

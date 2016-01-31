@@ -3,10 +3,10 @@ using System.Collections;
 
 public class BossEnemy : MonoBehaviour {
 
-    public static float speed = 1f;
+    public static float speed = 7.5f;
     public GameObject player;
     private float currentHealth;
-    public float maxHealth;
+    public static float maxHealth = 25;
     public GameObject healthBar;
 
     public bool followPlayer = false;
@@ -45,7 +45,6 @@ public class BossEnemy : MonoBehaviour {
             if (currentHealth <= 0)
             {
 				GameObject port = Instantiate (portal);
-				PlayerScript.bossesKilled++;
 				port.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y + 2, -1);
                 Destroy(this.gameObject);
             }
