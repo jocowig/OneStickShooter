@@ -106,6 +106,11 @@ public class PlayerScript : MonoBehaviour
             refillHealthBar();
             Destroy(other.gameObject);
         }
+        if (other.tag.Equals("Speed"))
+        {
+            speed++;
+            Destroy(other.gameObject);
+        }
     }
 
     private void refillHealthBar()
