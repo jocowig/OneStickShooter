@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
 
 	public GameObject player;
 	public TextAsset startingRoomJson;
+	public TextAsset bossRoom;
 
 	private Dictionary<string, bool> roomsPlaced = new Dictionary<string, bool>();
 
@@ -27,9 +28,6 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        //jsonText = (TextAsset)Resources.Load("testLevel.json");
-        // TODO: add sprite sheet
-        //tiles = Resources.LoadAll<Sprite>("rougelikeDungeon_transparent");
 		GenerateLevel (RoomsToGenerate);
     }
     
@@ -80,18 +78,18 @@ public class LevelGenerator : MonoBehaviour
 			if (enemyType > 0) {
 				GameObject enemy;
 				switch (enemyType) {
-				case 2:
+				case 2: // Normal enemy
 					enemy = Instantiate (enemyPrefab);
 					enemy.GetComponent<FollowEnemy> ().player = player;
 					room.GetComponent<Room> ().enemies.Add (enemy);
 					break;
-				case 3:
+				case 3: // Slow trap
 					enemy = Instantiate (slowPrefab);
 					break;
-				case 4:
+				case 4: // Damage trap
 					enemy = Instantiate (damagePrefab);
 					break;
-				case 5:
+				case 5: // Random enemy
 					float rand = UnityEngine.Random.value;
 					if (rand > .66f) {
 						enemy = Instantiate (enemyPrefab);
@@ -101,19 +99,28 @@ public class LevelGenerator : MonoBehaviour
 						enemy = Instantiate (damagePrefab);
 					}
 					break;
+				case 6: // Random chance enemy
+					float randChance = UnityEngine.Random.value;
+					if (randChance > .33) {
+						enemy = Instantiate (enemyPrefab);
+						enemy.GetComponent<FollowEnemy> ().player = player;
+						room.GetComponent<Room> ().enemies.Add (enemy);
+					}
+					break;
+				case 7: // Boss
 				default:
 					enemy = Instantiate (enemyPrefab);
 					room.GetComponent<Room> ().enemies.Add (enemy);
+					enemy.GetComponent<FollowEnemy> ().player = player;
 					break;
 				}
-				enemy.transform.SetParent(room.transform);
-				enemy.transform.position = new Vector3(Int32.Parse(tile["x"]), Int32.Parse(tile["y"]), -1);
-				enemy.name = "enemy_" + enemy.transform.position.x + "_" + enemy.transform.position.y;
+				if (enemy != null) {
+					enemy.transform.SetParent (room.transform);
+					enemy.transform.position = new Vector3 (Int32.Parse (tile ["x"]), Int32.Parse (tile ["y"]), -1);
+					enemy.name = "enemy_" + enemy.transform.position.x + "_" + enemy.transform.position.y;
+				}
 			}
 		}
-        // Add Collision prefab to room
-
-        // Add Trigger prefab to detect room entry
         return room;
     }
 
@@ -124,22 +131,24 @@ public class LevelGenerator : MonoBehaviour
         while (roomsLeft > 0 && tries < maxTries)
         {
 			tries++;
-            if (roomsLeft == numberOfRooms)
-            {
-                // first room;
-				GameObject firstRoom = parseRoomJson(startingRoomJson.text);
+			if (roomsLeft == numberOfRooms) {
+				// first room;
+				GameObject firstRoom = parseRoomJson (startingRoomJson.text);
 				firstRoom.name = "Room_" + roomsLeft;
-				rooms.Add(firstRoom);
+				rooms.Add (firstRoom);
 				roomsPlaced.Add (firstRoom.transform.position.x + "_" + firstRoom.transform.position.y, true);
-                roomsLeft--;
-            }
-            else {
+				roomsLeft--;
+			} else {
                 rooms.Shuffle();
                 string randExit = GetRandomExit();
 				if (!rooms[0].GetComponent<Room>().HasExit(randExit) && !IsRoomTaken(randExit, rooms[0])) {
-                    GameObject newRoom = parseRoomJson(GetRandomRoom());
+					GameObject newRoom;
+					if (roomsLeft == 1) {
+						newRoom = parseRoomJson (bossRoom);
+					} else {
+						newRoom = parseRoomJson(GetRandomRoom());
+					}
                     // Set position based on exit
-                    // TODO: Destory Doors
                     if (randExit == "e")
                     {
                         newRoom.transform.position = new Vector3(rooms[0].transform.position.x + 25, rooms[0].transform.position.y);
@@ -242,11 +251,6 @@ public class LevelGenerator : MonoBehaviour
 
     string GetRandomRoom()
     {
-        //JSONNode levelData = JSON.Parse(jsonText.text);
-        //JSONNode randomRoom = levelData.AsArray[UnityEngine.Random.Range(0, levelData.AsArray.Count)];
-        // string roomJson = randomRoom.ToString();
-        // return roomJson;
-		//Debug.Log(jsonText.text);
 		jsonText.Shuffle();
 		return jsonText [0].text;
     }
