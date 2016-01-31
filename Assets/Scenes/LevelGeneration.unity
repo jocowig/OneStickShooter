@@ -89,48 +89,6 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 199712, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
   m_PrefabInternal: {fileID: 1376164791}
---- !u!1001 &429442042
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 8.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 431658, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 48313fa21f055884ea63a88c24b29ed4, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &973568173
 GameObject:
   m_ObjectHideFlags: 0
