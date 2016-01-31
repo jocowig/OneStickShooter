@@ -33,9 +33,9 @@ public class FollowEnemy : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision collisionInfo)
+    void OnTriggerEnter(Collider collisionInfo)
     {
-        if (collisionInfo.collider.tag.Equals("Firework"))
+        if (collisionInfo.tag.Equals("Firework"))
         {
 			followPlayer = true;
             currentHealth--;
