@@ -17,6 +17,7 @@ public class LevelGenerator : MonoBehaviour
 	public GameObject slowPrefab;
 	public GameObject damagePrefab;
 	public GameObject bossPrefab;
+	public GameObject speedPrefab;
 
 	public GameObject player;
 	public TextAsset startingRoomJson;
@@ -93,12 +94,14 @@ public class LevelGenerator : MonoBehaviour
 					break;
 				case 5: // Random enemy
 					float rand = UnityEngine.Random.value;
-					if (rand > .66f) {
+					if (rand > .75f) {
 						enemy = Instantiate (enemyPrefab);
-					} else if (rand > .33f) {
+					} else if (rand > .50f) {
 						enemy = Instantiate (slowPrefab);
-					} else {
+					} else if (rand > .25f) {
 						enemy = Instantiate (damagePrefab);
+					} else {
+						enemy = Instantiate (speedPrefab);
 					}
 					break;
 				case 6: // Random chance enemy
