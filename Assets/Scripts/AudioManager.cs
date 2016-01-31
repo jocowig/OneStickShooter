@@ -17,8 +17,14 @@ public class AudioManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 	}
 
+	void Start() {
+		Play();
+	}
+
 	public void Play() {
-		GetComponent<AudioSource> ().Play ();
+		if (!GetComponent<AudioSource> ().isPlaying) {
+			GetComponent<AudioSource> ().Play ();
+		}
 	}
 
 	public void Stop() {
