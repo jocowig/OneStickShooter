@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class FollowEnemy : MonoBehaviour {
 
+    private GameObject powerUp;
+    public GameObject healthPowerUp;
+    public GameObject speedPowerUp;
+    public GameObject weaponPowerUp;
     public GameObject player;
     public float followTime = 1f;
     public float followSpeed = 2f;
@@ -42,10 +47,32 @@ public class FollowEnemy : MonoBehaviour {
             reduceHealthBar(currentHealth / maxHealth);
             if(currentHealth<=0)
             {
-                Destroy(this.gameObject);
+                possiblyDropPowerUp();
+                Destroy(this.gameObject);    
             }
         }
     }
+
+    private void possiblyDropPowerUp()
+    {
+        float rand = UnityEngine.Random.value;
+        if(rand< .05)
+        {
+            powerUp = Instantiate(weaponPowerUp) as GameObject;
+            powerUp.transform.position = transform.position;
+        }
+        else if(rand < .13)
+        {
+            powerUp = Instantiate(speedPowerUp) as GameObject;
+            powerUp.transform.position = transform.position;
+        }
+        else if(rand< .25)
+        {
+            powerUp = Instantiate(healthPowerUp) as GameObject;
+            powerUp.transform.position = transform.position;
+        }
+    }
+
     void reduceHealthBar(float remainingHealth)
     {
         healthBar.transform.localScale = new Vector3(remainingHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);

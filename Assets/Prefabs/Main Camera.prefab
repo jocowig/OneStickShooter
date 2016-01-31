@@ -13,6 +13,7 @@ GameObject:
   - 124: {fileID: 12478962}
   - 81: {fileID: 8136808}
   - 114: {fileID: 11456348}
+  - 45: {fileID: 4591502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 9.98, y: 9.93, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,7 +53,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -66,6 +67,14 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!45 &4591502
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174628}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
 --- !u!81 &8136808
 AudioListener:
   m_ObjectHideFlags: 1
@@ -91,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c604b22e841b0834c8270d6e8712a698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos: {x: 0, y: 0, z: -10}
+  myPos: {x: 0, y: 0, z: -20}
   myPlay: {fileID: 0}
 --- !u!124 &12478962
 Behaviour:
