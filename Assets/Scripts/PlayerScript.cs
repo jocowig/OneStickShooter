@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -71,17 +72,19 @@ public class PlayerScript : MonoBehaviour {
     {
         if (collisionInfo.collider.tag.Equals("Enemy"))
         {
-            currentHealth--;
-            reduceHealthBar(currentHealth/ maxHealth);
-            if (currentHealth <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            reduceHealthBar();
         }
     }
 
-    public void reduceHealthBar(float remainingHealth)
+    public void reduceHealthBar()
     {
-        healthBar.transform.localScale = new Vector3(remainingHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        currentHealth--;
+        healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("StartScreen");
+
+        }
+        
     }
 }

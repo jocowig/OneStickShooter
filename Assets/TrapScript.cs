@@ -19,8 +19,7 @@ public class TrapScript : MonoBehaviour {
             if (trapType == "damage")
             {
                 Debug.Log("Entered Damage Collider");
-                other.gameObject.GetComponent<PlayerScript>().currentHealth--;
-                other.gameObject.GetComponent<PlayerScript>().reduceHealthBar(other.gameObject.GetComponent<PlayerScript>().currentHealth/ other.gameObject.GetComponent<PlayerScript>().maxHealth);
+                other.gameObject.GetComponent<PlayerScript>().reduceHealthBar();
             }
             if (trapType == "slow")
             {
