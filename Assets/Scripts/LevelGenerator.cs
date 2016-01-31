@@ -94,10 +94,11 @@ public class LevelGenerator : MonoBehaviour
 
     string GetRandomRoom()
     {
-        JSONNode levelData = JSON.Parse(jsonText.text);
-        JSONNode randomRoom = levelData.AsArray[UnityEngine.Random.Range(0, levelData.AsArray.Count)];
-        string roomJson = randomRoom.ToString();
-        return roomJson;
+        //JSONNode levelData = JSON.Parse(jsonText.text);
+        //JSONNode randomRoom = levelData.AsArray[UnityEngine.Random.Range(0, levelData.AsArray.Count)];
+        // string roomJson = randomRoom.ToString();
+        // return roomJson;
+        return jsonText.text;
     }
     
     string GetRandomExit()

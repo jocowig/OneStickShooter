@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
     GameObject projectile;
     public GameObject healthBar;
     public float speed;
-    private float currentHealth;
+    public float currentHealth;
     public float maxHealth;
     Rigidbody rb;
     bool mouseDown;
@@ -80,7 +80,7 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    void reduceHealthBar(float remainingHealth)
+    public void reduceHealthBar(float remainingHealth)
     {
         healthBar.transform.localScale = new Vector3(remainingHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
