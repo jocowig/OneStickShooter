@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 110938}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 8.43, y: -1.97, z: -1}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22407012}
   - {fileID: 22473592}
@@ -253,6 +253,7 @@ MonoBehaviour:
   followSpeed: 25
   maxHealth: 5
   healthBar: {fileID: 136668}
+  followPlayer: 0
 --- !u!114 &11459668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +538,14 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 199712, guid: 70d52e457ff1f8e4e9953e0ef8df7fe0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110938}
