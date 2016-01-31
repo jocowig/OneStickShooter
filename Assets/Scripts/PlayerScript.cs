@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     bool mouseDown;
     bool joystickMoving;
     bool usingJoystick;
+    public int playerDamage;
 
     Vector3 lookPos;
     Vector3 lookDir;
@@ -25,6 +26,7 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerDamage = 1;
         currentHealth = maxHealth;
         projectile = Resources.Load("Firework") as GameObject;
         rb = GetComponent<Rigidbody>();
@@ -109,6 +111,12 @@ public class PlayerScript : MonoBehaviour
         if (other.tag.Equals("Speed"))
         {
             speed++;
+            Destroy(other.gameObject);
+        }
+        if (other.tag.Equals("Weapon"))
+        {
+            playerDamage++;
+            projectile.GetComponent<FireworkScript>().damage = playerDamage;
             Destroy(other.gameObject);
         }
     }

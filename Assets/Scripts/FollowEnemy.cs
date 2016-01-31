@@ -38,7 +38,7 @@ public class FollowEnemy : MonoBehaviour {
         if (collisionInfo.tag.Equals("Firework"))
         {
 			followPlayer = true;
-            currentHealth--;
+            currentHealth = currentHealth - collisionInfo.gameObject.GetComponent<FireworkScript>().damage;
             reduceHealthBar(currentHealth / maxHealth);
             if(currentHealth<=0)
             {
