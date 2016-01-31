@@ -13,12 +13,12 @@ public class TrapScript : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trap Collision Entered");
+        //Debug.Log("Trap Collision Entered");
         if (other.tag.Equals("Player"))
         {
             if (trapType == "damage")
             {
-                Debug.Log("Entered Damage Collider");
+                //Debug.Log("Entered Damage Collider");
                 other.gameObject.GetComponent<PlayerScript>().reduceHealthBar();
             }
             if (trapType == "slow")

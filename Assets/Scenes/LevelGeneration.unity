@@ -126,6 +126,8 @@ MonoBehaviour:
   slowPrefab: {fileID: 176486, guid: 1876e3f2eaf38204e9d4123b7948c8df, type: 2}
   damagePrefab: {fileID: 182290, guid: 9af5d894ff7290d4c9be6c8aa142230d, type: 2}
   player: {fileID: 5504891}
+  maxTries: 100
+  RoomsToGenerate: 12
 --- !u!4 &973568175
 Transform:
   m_ObjectHideFlags: 0

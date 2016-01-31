@@ -18,13 +18,19 @@ public class LevelGenerator : MonoBehaviour
 	public GameObject damagePrefab;
 
 	public GameObject player;
+	public TextAsset startingRoomJson;
+
+	private Dictionary<string, bool> roomsPlaced = new Dictionary<string, bool>();
+
+	public int maxTries = 500;
+	public int RoomsToGenerate = 6;
 
     void Start()
     {
         //jsonText = (TextAsset)Resources.Load("testLevel.json");
         // TODO: add sprite sheet
         //tiles = Resources.LoadAll<Sprite>("rougelikeDungeon_transparent");
-		GenerateLevel (6);
+		GenerateLevel (RoomsToGenerate);
     }
     
     GameObject parseRoomJson(string roomFile)
@@ -114,20 +120,23 @@ public class LevelGenerator : MonoBehaviour
     void GenerateLevel(int numberOfRooms)
     {
         int roomsLeft = numberOfRooms;
-        while (roomsLeft > 0)
+		int tries = 0;
+        while (roomsLeft > 0 && tries < maxTries)
         {
+			tries++;
             if (roomsLeft == numberOfRooms)
             {
                 // first room;
-				GameObject firstRoom = parseRoomJson(GetRandomRoom());
+				GameObject firstRoom = parseRoomJson(startingRoomJson.text);
 				firstRoom.name = "Room_" + roomsLeft;
 				rooms.Add(firstRoom);
+				roomsPlaced.Add (firstRoom.transform.position.x + "_" + firstRoom.transform.position.y, true);
                 roomsLeft--;
             }
             else {
                 rooms.Shuffle();
                 string randExit = GetRandomExit();
-                if (!rooms[0].GetComponent<Room>().HasExit(randExit)) {
+				if (!rooms[0].GetComponent<Room>().HasExit(randExit) && !IsRoomTaken(randExit, rooms[0])) {
                     GameObject newRoom = parseRoomJson(GetRandomRoom());
                     // Set position based on exit
                     // TODO: Destory Doors
@@ -156,6 +165,9 @@ public class LevelGenerator : MonoBehaviour
 						newRoom.GetComponent<Room>().addToDictionary("n", rooms[0]);
                     }
 
+					roomsPlaced.Add (newRoom.transform.position.x + "_" + newRoom.transform.position.y, true);
+					Debug.Log("Added at " + newRoom.transform.position.x + "_" + newRoom.transform.position.y);
+
 					//Debug.Log ("Adding exit " + randExit);
 					rooms[0].GetComponent<Room>().addToDictionary(randExit, newRoom);
 
@@ -169,6 +181,24 @@ public class LevelGenerator : MonoBehaviour
             }
         }
     }
+
+	bool IsRoomTaken(string dir, GameObject oldRoom) {
+		if (dir == "e") {
+			Debug.Log("Room taken ? " + roomsPlaced.ContainsKey ((rooms [0].transform.position.x + 25).ToString () + "_" + rooms [0].transform.position.y.ToString ())); 
+			return roomsPlaced.ContainsKey ((rooms [0].transform.position.x + 25) + "_" + rooms [0].transform.position.y);
+		} else if (dir == "w") {
+			Debug.Log("Room taken ? " + roomsPlaced.ContainsKey ((rooms [0].transform.position.x - 25).ToString () + "_" + rooms [0].transform.position.y.ToString ())); 
+			return roomsPlaced.ContainsKey ((rooms [0].transform.position.x - 25) + "_" + rooms [0].transform.position.y);
+		} else if (dir == "n") {
+			Debug.Log("Room taken ? " + roomsPlaced.ContainsKey (rooms [0].transform.position.x.ToString () + "_" + (rooms [0].transform.position.y + 25).ToString ())); 
+			return roomsPlaced.ContainsKey (rooms [0].transform.position.x+ "_" + (rooms [0].transform.position.y + 25));
+		} else if (dir == "s") {
+			Debug.Log("Room taken ? " + roomsPlaced.ContainsKey ((rooms [0].transform.position.x + 25).ToString () + "_" + (rooms [0].transform.position.y - 25).ToString ()));
+			return roomsPlaced.ContainsKey (rooms [0].transform.position.x + "_" + (rooms [0].transform.position.y - 25));
+		}
+
+		return true;
+	}
 
 	void DeleteWalls(string dir, GameObject baseRoom, GameObject newRoom) {
 		if (dir == "e") {
